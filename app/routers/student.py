@@ -10,8 +10,8 @@ student = APIRouter(prefix='/student', tags=['Students'])
 
 
 @student.get('/')
-async def getAll(sort: Optional[str] = 'batch', limit: Optional[int] = 10):
-    student = student_collection.find().sort(sort).limit(limit)
+async def getAll(sort: Optional[str] = 'batch', limit: Optional[int] = 10, skip: Optional[int] = 0):
+    student = student_collection.find().sort(sort).limit(limit).skip(skip)
     if student:
         return {"status" : "ok" , "data" : studentsSerializer(student)}
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=  f"Student don't exist")
@@ -22,16 +22,14 @@ async def getOne(id: str):
         student = student_collection.find_one({'_id': ObjectId(id)})
         if student:
             return {"data" : studentSerializer(student)}
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=  f"Student with id {id} don't exist")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=  f"Student with id {id} dones't exist")
     else:
         return {'Message': 'Please Enter 24 Charater Long ID'}
 
-    
-
 @student.get('/get-by/{batch}')
-async def getBatch(batch: int):
+async def getBatch(batch: int, sort: Optional[str] = 'name', skip: Optional[int] = 0, limit: Optional[int] = 10):
     students = []
-    document = student_collection.find({'batch': batch}).sort('name', 1)
+    document = student_collection.find({'batch': batch}).sort(sort).skip(skip).limit(limit)
     for student in document:
         students.append(Student(**student))
     return {'data': students}
