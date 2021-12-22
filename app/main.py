@@ -5,7 +5,6 @@ from app.oauth2 import get_current_user
 
 app = FastAPI()
 
-# token_listener = get_current_user
 
 @app.get('/', tags=['Root'])
 def root():
@@ -14,7 +13,7 @@ def root():
 
 app.include_router(auth.auth)
 app.include_router(user.user)
-# app.include_router(student.student, dependencies=[Depends(token_listener)])
+
 app.include_router(student.student)
 
 

@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 from app.schemas import user_helper
 
-# client = MongoClient('mongodb://localhost:27017/')
-client = MongoClient('mongodb+srv://SameerJoshi:SameerJoshi@ncc-bim.q8vmf.mongodb.net/ncc_bim?retryWrites=true&w=majority')
+
+client = MongoClient('mongodb+srv://username:password@databasehost/database_name')
 db = client.ncc_bim
 student_collection = db['students']
 user_collection = db['users']
