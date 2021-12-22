@@ -5,9 +5,9 @@ Made this Simple Api to store and Retrive Student Data of My College
 To View All the endpoits Visit **/docs**
 
 
-## To run this App 
+## To Run Locally
     - Create Virtual Environment
     - Install all the required packages by using
         $ pip install -r requirements.txt 
-    - To Runn The App
+    - To Run The App
         $ uvicorn app.main:app --reload
