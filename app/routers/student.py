@@ -26,7 +26,7 @@ async def getOne(id: str):
     else:
         return {'Message': 'Please Enter 24 Charater Long ID'}
 
-@student.get('/get-by/{batch}')
+@student.get('/get-by/{batch}') 
 async def getBatch(batch: int, sort: Optional[str] = 'name', skip: Optional[int] = 0, limit: Optional[int] = 10):
     students = []
     document = student_collection.find({'batch': batch}).sort(sort).skip(skip).limit(limit)
