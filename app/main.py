@@ -9,7 +9,9 @@ app = FastAPI()
 @app.get('/', tags=['Root'])
 def root():
     return {'Visit /docs for all API Endpoints.'}
-
+@app.get('/hello', tags=['Root'])
+def hello():
+    return {'hello world'}
 
 app.include_router(auth.auth)
 app.include_router(user.user)
